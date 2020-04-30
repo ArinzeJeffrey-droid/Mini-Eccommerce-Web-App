@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+ <!-- /.login-logo -->
+<div class='bypass'>
+    <form method='POST'>
+    <h1>Enter Email To View Orders</h1>
+    <div class='form-group'>
+        <label>Email</label>
+        <input type="text" class="form-control" name="email" placeholder="Email">
+    </div>
+    <input type="submit" value="View" class="btn btn-primary">
+</form>
+</div>
+
+
+{%endblock%}

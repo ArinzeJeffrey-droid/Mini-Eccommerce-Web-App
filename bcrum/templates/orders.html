@@ -1,0 +1,62 @@
+{%extends "base.html"%} {%block contents%}
+<div class='container'>
+    <div class="title">
+        <div class="text">
+            <h1>My Orders</h1>
+        </div>
+        <div class="stroke"></div>
+    </div>
+    {% if current_user.orders %}
+    {%for item in current_user.orders%}
+    <div class="col-lg-12 col-sm-12 p">
+        <div class="col-md-6">
+            <img class="img-thumbnail img-responsive" style="width: 200px;height:200px" src="{{url_for('static', filename='product_img/'+item.products.product_image)}}" alt="">
+        </div>
+        <div class="col-md-6">
+            <h1>{{item.products.product_name}}</h1>
+            <h2>Price: <span>&#8358;</span>
+                <span id="price">{{item.products.product_price}}</span>
+            </h2>
+            <h3>Quantity: <span id="qty">{{item.order_quantity}}</span></h3>
+            <h3>Total Price: <span>&#8358;</span>
+                <span id="total">{{item.total_price}}</span>
+            </h3>
+            <a href="{{url_for('cancel_order', order_id=item.order_id)}}" class="btn btn-danger">Cancel Order</a>
+        </div>
+    </div>
+    {%endfor%}
+    {% else %}
+    <h1 class="text-muted" style="margin-top:35px;">You Have No Orders</h1>
+    {% endif %}
+    <!-- <div class="col-lg-12 col-sm-12 p">
+        <div class="col-md-6">
+            <img class="img-thumbnail img-responsive" style="width: 200px;height:200px" src="{{url_for('static', filename='img/man-in-suit.jpg')}}" alt="">
+        </div>
+        <div class="col-md-6">
+            <h1>Gray Coloured Suit</h1>
+            <h2>Price: <span>&#8358;</span>
+                <span id="price">10,000</span>
+            </h2>
+            <h3>Quantity: <span id="qty"></span></h3>
+            <h3>Total Price: <span>&#8358;</span>
+                <span id="total"></span>
+            </h3>
+        </div>
+    </div> -->
+    <!-- <div class="col-lg-12 col-sm-12 p">
+        <div class="col-md-6">
+            <img class="img-thumbnail img-responsive" style="width: 200px;height:200px" src="{{url_for('static', filename='img/man-in-suit.jpg')}}" alt="">
+        </div>
+        <div class="col-md-6">
+            <h1>Gray Coloured Suit</h1>
+            <h2>Price: <span>&#8358;</span>
+                <span id="price">10,000</span>
+            </h2>
+            <h3>Quantity: <span id="qty"></span></h3>
+            <h3>Total Price: <span>&#8358;</span>
+                <span id="total"></span>
+            </h3>
+        </div>
+    </div> -->
+</div>
+{%endblock%}

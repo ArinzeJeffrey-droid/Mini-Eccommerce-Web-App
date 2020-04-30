@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block contents %}
+<div class="container-fluid">
+    <div class="row">
+        {%for product in products.items%}
+        <div class="col-lg-3 col-md-4 col-sm-6 box">
+            <div class="inner">
+                <img class="img-thumbnail img-responsive" style="width: 200px;height:200px" src="{{url_for('static', filename='product_img/'+product.product_image)}}" alt="">
+            </div>
+            <h3><a href="{{url_for('single_product', p_id=product.id)}}" style="text-decoration: none; color:black;">{{product.product_name}}</a></h3>
+            <h4>{{product.product_price}}</h4>
+            <a href="{{url_for('order', p_id=product.id)}}" class="btn btn-primary">Buy Now</a>
+        </div>
+        {%endfor%}
+    </div>
+    {% for page_num in products.iter_pages(left_edge=1, right_edge=2, left_current=1, right_current=2) %}
+    <div class="pagination">
+        {%if page_num%}
+            {%if products.page == page_num%}
+                <a class='btn btn-primary mb-4 active' href="{{url_for('get_all_products', page=page_num)}}">{{page_num}}</a>
+            {%else%}
+                <a class='btn btn-info mb-4' href="{{url_for('get_all_products', page=page_num)}}">{{page_num}}</a>
+            {%endif%}
+        {%else%}
+            ...
+        {%endif%}
+    </div>
+    {% endfor %}
+</div>
+{% endblock contents %}

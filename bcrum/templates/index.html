@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="5"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bcrum Designs</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+</head>
+
+<body>
+    <div class="landing-page">
+        <div class="logo-menu">
+            <div class="logo">
+                <h1>Bcrum <br> Designs</h1>
+            </div>
+
+            <div class="menu" onclick="opennav()">
+                <div class="span"></div>
+                <div class="span middle"></div>
+                <div class="span"></div>
+            </div>
+        </div>
+
+        <div class="social">
+            <div class="social-icons">
+                <a href="#"><img src="{{url_for('static', filename='img/facebook.png')}}" alt="facebook page" width="30px" height="30px"></a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><img src="{{url_for('static', filename='img/instagram.png')}}" alt="facebook page" width="30px" height="30px"></a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><img src="{{url_for('static', filename='img/whatsapp.png')}}" alt="facebook page" width="30px" height="30px"></a>
+            </div>
+        </div>
+
+
+        <div id="mainmenu" class="nav">
+            <a href="#" class="closebtn" onclick="closenav()">&times;</a>
+            <a href="#">Home</a>
+            <a href="#">Collections</a>
+            <!-- <a href="#"></a> -->
+            <a href="#">Contact</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{url_for('order_list')}}">My Orders</a>
+                <a href="{{url_for('profile')}}">Edit Profile</a>
+                <a href="{{url_for('logout')}}">Logout</a>
+            {% else %}
+                <a href="{{url_for('user_login')}}">Login</a>
+            {% endif %}
+        </div>
+    {%with messages = get_flashed_messages(with_categories=True)%} 
+    {%if messages%} 
+    {%for category, message in messages%}
+    <div class="alert alert-{{category}} subs" style="text-align: center;">
+        {{message}}
+    </div>
+    {%endfor%} 
+    {%endif%} 
+    {%endwith%} 
+        <div class="landing-collection">
+            <div class="men items">
+                <p><a href="{{url_for('get_all_products')}}" style="text-decoration: none; color:#E9DCCD;">Men</a></p>
+            </div>
+            <div class="women items">
+                <p><a href="{{url_for('get_all_products')}}" style="text-decoration: none; color:#E9DCCD;">Women</a></p>
+            </div>
+            <div class="accessories items">
+                <p><a href="{{url_for('get_all_products')}}" style="text-decoration: none; color:#E9DCCD;">Accessories</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        <div class="text">
+            <h1>Collections</h1>
+        </div>
+        <div class="stroke"></div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="imgbox">
+                <img src="{{url_for('static', filename='img/man.jpg')}}">
+            </div>
+            <div class="contentbox">
+                <div class="content">
+                    <h2>Summer 2020</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente dignissimos debitis sint quos. Molestiae itaque animi neque alias repellat veritatis sint blanditiis nostrum ab aperiam quis, quos error quidem temporibus!</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="imgbox">
+                <img src="{{url_for('static', filename='img/man-in-suit.jpg')}}">
+            </div>
+            <div class="contentbox">
+                <div class="content">
+                    <h2>Winter Is Here</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente dignissimos debitis sint quos. Molestiae itaque animi neque alias repellat veritatis sint blanditiis nostrum ab aperiam quis, quos error quidem temporibus!</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="imgbox">
+                <img src="{{url_for('static', filename='img/man.jpg')}}">
+            </div>
+            <div class="contentbox">
+                <div class="content">
+                    <h2>Responsive Card</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente dignissimos debitis sint quos. Molestiae itaque animi neque alias repellat veritatis sint blanditiis nostrum ab aperiam quis, quos error quidem temporibus!</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="imgbox">
+                <img src="{{url_for('static', filename='img/man-standing-on-gray-surface-1436289.jpg')}}">
+            </div>
+            <div class="contentbox">
+                <div class="content">
+                    <h2>Responsive Card</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente dignissimos debitis sint quos. Molestiae itaque animi neque alias repellat veritatis sint blanditiis nostrum ab aperiam quis, quos error quidem temporibus!</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="title">
+        <div class="text">
+            <h1>Request a qoute</h1>
+        </div>
+        <div class="stroke"></div>
+    </div>
+
+    <div class="form">
+        <div class="quote">
+            <form action="#" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="text" name="email" placeholder="Your Email" class='email' required>
+                <select name="gender" id="" class="gender">
+                    <option value="">Select your gender........</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <textarea name="message" cols="30" rows="10" placeholder="Make Your request"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="subscribe">
+        <h1>Latest Designs</h1>
+        <p>Subscribe for our latest designs, collection and promotions.</p>
+        <form action="#" method="post">
+            <div class="sub">
+                <input type="text" name="subs" placeholder="Enter Email...">
+                <button type="submit">Subscribe</button>
+            </div>
+        </form>
+    </div>
+    <!-- <div class="to-top">
+        <p></p>
+    </div> -->
+    <footer>
+        <div class="links">
+            <div class="page-links">
+                <h2>Collections</h2>
+                <a href="{{url_for('get_category', cat='Men')}}">Men</a>
+                <a href="{{url_for('get_category', cat='Women')}}">Women</a>
+                <a href="{{url_for('get_category', cat='Kids')}}">Children</a>
+            </div>
+            <div class="page-links">
+                <h2>Product</h2>
+                <a href="#">Shirts</a>
+                <a href="#">Trouser</a>
+                <a href="#">London Boots</a>
+                <a href="#">Wristwatches</a>
+                <a href="#">Belts</a>
+            </div>
+            <div class="page-links">
+                <h2>Get In Touch</h2>
+                <span>
+                        <a href="#"><img src="{{url_for('static', filename='img/instagram.png')}}" alt="facebook page" width="30px" height="30px"></a>
+                        <a href="#"><img src="{{url_for('static', filename='img/facebook.png')}}" alt="facebook page" width="30px" height="30px"></a>
+                        <a href="#"><img src="{{url_for('static', filename='img/whatsapp.png')}}" alt="facebook page" width="30px" height="30px"></a>
+                    </span>
+                <span class="two">
+                        <img src="{{url_for('static', filename='img/instagram.png')}}" alt="address icon" width="20px" height="20px">
+                        <span>Lagos, Nigeria</span>
+                </span>
+                <span class="two">
+                        <img src="{{url_for('static', filename='img/instagram.png')}}" alt="address icon" width="20px" height="20px">
+                        <span>01-23444-54445</span>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <div class="foot">
+        <p>Designed By Atevadd &copy; 2019</p>
+    </div>
+
+
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+
+</html>

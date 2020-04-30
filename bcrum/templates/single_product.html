@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block contents %}
+<div class="container">
+{%for item in product%}
+    <div class="col-md-12 p">
+        <div class="col-md-6">
+            <img class="img-thumbnail img-responsive" style="width: 200px;height:200px" src="{{url_for('static', filename='product_img/'+item.product_image)}}" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2>{{item.product_name}}</h2>
+            <h3><span>&#8358;</span>{{item.product_price}}</h3>
+            <p class="description">{{item.product_description}}</p>
+            <a href='{{url_for("order",p_id=item.id)}}' class="btn btn-primary">Order Now</a>
+        </div>
+    </div>
+{%endfor%}
+</div>
+{% endblock contents %}

@@ -1,0 +1,39 @@
+{% extends 'admin_layout.html' %}
+{% block contents %}
+        <form method='POST' class="col-lg-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add User</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputClientCompany">Username</label>
+                <input type="text" name='username' id="inputClientCompany" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputClientCompany">Email</label>
+                <input type="email" name='email' id="inputClientCompany" class="form-control">
+              </div>
+            <div class="form-group">
+                <label for="inputClientCompany">Password</label>
+                <input type="password" name='password' id="inputClientCompany" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="inputClientCompany">Confirm Password</label>
+                <input type="password" name='confirm_password' id="inputClientCompany" class="form-control">
+            </div>
+                <div class="form-group">
+                <input type="submit" value="Add User" class="btn btn-primary">
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </form>
+{% endblock contents %}

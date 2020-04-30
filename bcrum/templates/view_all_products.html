@@ -1,0 +1,54 @@
+{% extends 'admin_layout.html' %}
+{% block contents %}
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">View All Products</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-wrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Product Name</th>
+                      <th>Product Description</th>
+                      <th>Product Image</th>
+                      <th>Product Category</th>
+                      <th>Product Price</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {%for product in products%}
+                    <tr>
+                      <td>{{product.id}}</td>
+                      <td>{{product.product_name}}</td>
+                      <td>{{product.product_description}}</td>
+                      <td><img style="width:300px;height:200px;" class="img-responsive img-thumbnail" src="{{url_for('static', filename='product_img/'+product.product_image)}}"></td>
+                      <td>{{product.category.category}}</td>
+                      <td>&#8358;{{product.product_price}}</td>
+                      <td><a href="{{url_for('edit_product', p_id=product.id)}}" class='btn btn-info'>Edit</a></td>
+                      <td><a href="{{url_for('delete_product', p_id=product.id)}}" class='btn btn-danger'>Delete</a></td>
+                    </tr>
+                  {%endfor%}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              
+            </div>
+            <!-- /.card -->
+          </div>
+{% endblock contents %}

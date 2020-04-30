@@ -1,0 +1,155 @@
+{% extends 'admin_layout.html' %}
+{% block contents %}
+    <section class="content col-12">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="callout callout-info">
+
+
+            <!-- Main content -->
+          {% if user.orders %}
+            <div class="invoice p-3 mb-3">
+              <!-- title row -->
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-globe"></i> Bcrum.
+                    <small class="float-right">Date: 3/6/2020</small>
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- info row -->
+              <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                  From
+                  <address>
+                    <strong>Admin, Inc.</strong><br>
+                    795 Folsom Ave, Suite 600<br>
+                    Ikorodu Lagos, Nigeria<br>
+                    Phone: (804) 123-5432<br>
+                    Email: info@Brcum.com
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                  To
+                  <address>
+                    <strong>{{user.first_name}} {{user.last_name}}</strong><br>
+                    Adress: {{user.address}}<br>
+                    Phone: {{user.mobile_number}}<br>
+                    Email: {{user.email}}
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                  <b>Invoice</b><br>
+                  <br>
+                  <b>Order ID:</b> 4F3S8J<br>
+                  
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Qty</th>
+                      <th>Product</th>
+                      <th>Unit Price</th>
+                      <th>Description</th>
+                      <th>Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in user.orders %}
+                    <tr>
+                      <td>{{item.order_quantity}}</td>
+                      <td>{{item.products.product_name}}</td>
+                      <td>{{item.products.product_price}}</td>
+                      <td>{{item.products.product_description}}</td>
+                      <td id='total_price'>&#8358;{{item.total_price}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-6">
+                  <p class="lead">Payment Methods:</p>
+                  <img src="{{url_for('static', filename='img/visa.png')}}" alt="Visa">
+                  <img src="{{url_for('static', filename='img/mastercard.png')}}" alt="Mastercard">
+                  <img src="{{url_for('static', filename='img/american-express.png')}}" alt="American Express">
+                  <img src="{{url_for('static', filename='img/paypal2.png')}}" alt="Paypal">
+
+                  <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                    Thank You For Shopping With Us, We Hope To See You Next Time.
+                    From
+                    Bcrum Team.
+                  </p>
+                </div>
+                <!-- /.col -->
+                <div class="col-6">
+                  <p class="lead">Amount Due 5/6/2020</p>
+
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th style="width:50%">Subtotal:</th>
+                        <td id="subtotal"></td>
+                      </tr>
+                      <tr>
+                        <th>Shipping:</th>
+                        <td id="ship">&#8358;1,500</td>
+                      </tr>
+                      <tr>
+                        <th>Total:</th>
+                        <td id="total"></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            {% else %}
+              <h1>No Pending Orders For This Customer</h1>
+            {% endif %}
+            </div>
+          
+            <!-- /.invoice -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+  <script>
+  function formatNumber(x) {
+    return x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+  let total = document.querySelectorAll("#total_price");
+  let subtotal = document.getElementById("subtotal");
+  let finaltotal = document.getElementById("total");
+  let ship = document.getElementById("ship").textContent.split("₦")[1].replace(',','');
+  let cleaned = []
+  let val = 0;
+  for(i=0; i < total.length; i++){
+      cleaned.push(total[i].textContent.split('₦')[1]);
+  }
+  for(j=0; j < cleaned.length; j++){
+    val+= Number(cleaned[j].replace(",", ""));
+  }
+  subtotal.textContent = "₦" + formatNumber(val);
+  finaltotal.textContent = "₦" + formatNumber(val + Number(ship))
+  
+  </script>
+{% endblock contents %}

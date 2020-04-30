@@ -1,0 +1,27 @@
+{% extends 'admin_layout.html' %}
+{% block contents %}
+        <form method='POST' class="col-lg-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Edit Product Category</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputName">Category Name</label>
+                <input type="text" value="{{category.category}}" name='category_name' id="inputName" class="form-control">
+              </div>
+                <div class="form-group">
+                <input type="submit" value="Add Category" class="btn btn-primary">
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </form>
+{% endblock contents %}

@@ -1,0 +1,60 @@
+{%extends "base.html"%} {%block contents%}
+<div class="smalltext">
+    <h1>Place An Order</h1>
+</div>
+
+<!--! The form-section of the order page -->
+<div class="order-container">
+    <!-- <a href="#">Red</a> -->
+    <!-- <div class="order-text">
+            <h1>Seamless Designs</h1>
+            <p>Needle & Threads</p>
+        </div> -->
+    <div class="order-form">
+        <form action="" method="POST">
+            <div class="form-group col-md-6">
+                <label>First Name</label>
+                <input type="text" value="{{current_user.first_name}}" class="form-control" name="fname" placeholder="First Name">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Last Name</label>
+                <input type="text" class="form-control" value="{{current_user.last_name}}" name="lname" placeholder="Last Name">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Email</label>
+                <input type="text" class="form-control" value="{{current_user.email}}" name="email" placeholder="Email">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Mobile Number</label>
+                <input type="text" class="form-control" value="{{current_user.mobile_number}}" name="phoneNo" placeholder="Mobile Number">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Address</label>
+                <input type="text" class="form-control" value="{{current_user.address}}" name="address" placeholder="Adress">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Order Quantity</label>
+                <input type="number" oninput="calc()" min="0" id="orderQty" class="form-control" name="quantity" placeholder="Order Quantity">
+            </div>
+            <div class="col-md-12 ">
+                <div class="col-md-6">
+                    <img src="{{url_for('static', filename='product_img/'+product.product_image)}}" alt="" class="img-responsive img-thumbnail">
+                </div>
+                <div class="col-md-6">
+                    <h1>{{product.product_name}}</h1>
+                    <h2>Price: <span>&#8358;</span>
+                        <span id="price">{{product.product_price}}</span>
+                    </h2>
+                    <h3>Quantity: <span id="qty"></span></h3>
+                    <h3>Total Price: <span>&#8358;</span>
+                        <span id="total"></span>
+                    </h3>
+                </div>
+                <div class="form-group col-md-6 btn-lg">
+                    <input type="submit" value="Order" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{%endblock%}
