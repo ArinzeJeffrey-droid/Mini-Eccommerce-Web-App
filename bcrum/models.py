@@ -28,6 +28,11 @@ class Product(db.Model):
 
     def __repr__(self):
         return self.product_name
+    
+    @classmethod
+    def find_by_id( cls, int:id):
+        return cls.query.filter_by(id=id).first()
+
 
 
 class Users(db.Model, UserMixin):
@@ -45,6 +50,9 @@ class Users(db.Model, UserMixin):
     def __repr__(self):
         return self.first_name
 
+    @classmethod
+    def find_by_email(cls, str:email):
+        return cls.query.filter_by(email=email).first()
 
 class Order(db.Model):
     order_id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -55,15 +63,6 @@ class Order(db.Model):
     total_price = db.Column(db.String(200))
     
     
-# class Admin(db.Model, UserMixin):
-#     __tablename__ = 'admin'
-#     id = db.Column(db.Integer, primary_key=True, nullable=False)
-#     username = db.Column('username', db.Unicode)
-#     email = db.Column('email', db.Unicode, unique=True, nullable=False)
-#     password = db.Column('password', db.Unicode, nullable=False)
-    
-#     def __repr__(self):
-#         return f"Admin('{self.id}', '{self.username}', '{self.email}')"
     
 class Subscription(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
